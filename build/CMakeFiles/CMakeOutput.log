@@ -11,7 +11,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/CMakeFiles/3.18.4/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/CMakeFiles/3.18.4/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /home/alex/.espressif/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ 
@@ -24,7 +24,7 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/CMakeFiles/3.18.4/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/CMakeFiles/3.18.4/CompilerIdCXX/a.out"
 
 Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
 xtensa-esp32-elf-gcc (crosstool-NG esp-2020r3) 8.4.0

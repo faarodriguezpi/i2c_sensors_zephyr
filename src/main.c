@@ -10,6 +10,9 @@
 #include <device.h>
 #include <drivers/i2c.h>
 
+
+#include "BMP280_driver-master/bmp280.h"
+
 #define I2C_DEV DT_LABEL(DT_ALIAS(i2c_0))
 #define I2C_DEV1 DT_LABEL(DT_ALIAS(i2c_1))
 //#define I2C_DEV1 DT_LABEL(DT_NODELABEL(i2c1))
@@ -21,16 +24,71 @@
  * @file Sample app using the I2C
  */
 
+/*Devices globales*/
+const struct device *i2c_dev;
+const struct device *i2c_dev1;
+
+/* Custom I2C write function */
+/*
+    dev_id: Dirección I2C del dispositivo, es la dirección I2C donde está escuchando el chip.
+    reg_addr: Dirección del primer registro para la operación de escritura o lectura.
+    data: Puntero a un buffer con la secuencia de bytes a escribir o donde guardaremos los bytes leídos.
+    len: Número de bytes por escribir o leer.
+*/
+int8_t user_i2c_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t len) {
+	
+	//uint8_t dataSend[16];
+	//dataSend[0] = reg_addr;
+	
+	/* Funcion provista por Zephyr */
+	if( i2c_write(i2c_dev1, &reg_addr, len, dev_id) != 0 ) {
+	    printk("Writing - Error write\n");
+	    return BMP280_E_COMM_FAIL;
+	};
+	
+	if( i2c_write(i2c_dev1, &data[0], len, dev_id) != 0 ) {
+	    printk("Writing - Error write\n");
+	    return BMP280_E_COMM_FAIL;
+	} else {
+    	return BMP280_OK;
+    };
+}
+
+/* Custom I2C read function */
+/*
+    dev_id: Dirección I2C del dispositivo, es la dirección I2C donde está escuchando el chip.
+    reg_addr: Dirección del primer registro para la operación de escritura o lectura.
+    data: Puntero a un buffer con la secuencia de bytes a escribir o donde guardaremos los bytes leídos.
+    len: Número de bytes por escribir o leer.
+*/
+int8_t user_i2c_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t len) {
+	
+	if( i2c_write(i2c_dev1, &reg_addr, 1, dev_id) != 0 ) { //Se escribe la dirección de la cual se va a leer posteriormente
+	    printk("Reading - Error write\n");
+	    return BMP280_E_COMM_FAIL;
+	}
+	
+    if(	i2c_read(i2c_dev1, &data[0], len, dev_id) != 0 ) { //o len-1
+        printk("Reading - Error read\n");
+		return BMP280_E_COMM_FAIL;
+	} else {
+	    return BMP280_OK;
+	};
+	
+}
+
+/* Custom delay function */
+void user_delay_ms(uint32_t period) {
+	k_msleep(period);
+}
+
+
 
 const float LM75A_DEGREES_RESOLUTION = 0.125;
 const int LM75A_REG_ADDR_TEMP = 0;
 
 void main(void)
 {   
-  
-	const struct device *i2c_dev;
-	const struct device *i2c_dev1;
-	
 	uint8_t cmp_data[16];
 	uint8_t data[16];
 	int i, ret;
@@ -99,16 +157,16 @@ void main(void)
     printk("---------->>   *** I2C BMP280 ***   <<--------------\n\n");
     
         
-	pointer = 0xF7; //Tos register pointer - 5000h por defecto
-	i2c_write(i2c_dev1, &pointer, 1, BMP280_DEFAULT_ADDRESS);
+	pointer = 0xF7;
+	i2c_write(i2c_dev1, &pointer, 1, BMP280_DEFAULT_ADDRESS); //Se escribe la dirección de la cual se va a leer posteriormente
 	
 	k_msleep(5);
 	ret = i2c_read(i2c_dev1, &data[0], 4, BMP280_DEFAULT_ADDRESS);
 	k_msleep(5);
 	printk("----->> presion %x temp %x\n\n", data[0], data[3]); // data[0] = 0xF7 reg info -  data[3] = 0xFA red info.
 	
-    pointer = 0xD0; //Tos register pointer - 5000h por defecto
-	i2c_write(i2c_dev1, &pointer, 1, BMP280_DEFAULT_ADDRESS);
+    pointer = 0xD0;
+	i2c_write(i2c_dev1, &pointer, 1, BMP280_DEFAULT_ADDRESS); //Se escribe la dirección de la cual se va a leer posteriormente
     
     k_msleep(5);
 	ret = i2c_read(i2c_dev1, &data[0], 1, BMP280_DEFAULT_ADDRESS);

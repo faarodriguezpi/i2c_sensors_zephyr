@@ -532,10 +532,10 @@
 /home/alex/zephyrproject/zephyr/modules/Kconfig.tls-generic
 /home/alex/zephyrproject/zephyr/modules/Kconfig.vega
 /home/alex/zephyrproject/zephyr/modules/Kconfig.xtensa
-/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/Kconfig/Kconfig.modules
-/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/Kconfig/Kconfig.soc
-/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/Kconfig/Kconfig.soc.arch
-/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/Kconfig/Kconfig.soc.defconfig
+/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/Kconfig/Kconfig.modules
+/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/Kconfig/Kconfig.soc
+/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/Kconfig/Kconfig.soc.arch
+/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/Kconfig/Kconfig.soc.defconfig
 /home/alex/zephyrproject/zephyr/samples/subsys/usb/usb_pid.Kconfig
 /home/alex/zephyrproject/zephyr/soc/Kconfig
 /home/alex/zephyrproject/zephyr/soc/xtensa/esp32/Kconfig.defconfig

@@ -1,4 +1,4 @@
-# Install script for directory: /home/alex/zephyrproject/zephyr/samples/i2c_LM75A
+# Install script for directory: /home/alex/zephyrproject/zephyr/samples/i2c_sensors
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/zephyr/cmake_install.cmake")
+  include("/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/zephyr/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/alex/zephyrproject/zephyr/samples/i2c_LM75A/build/modules/atmel/asf/cmake_install.cmake")
+  include("/home/alex/zephyrproject/zephyr/samples/i2c_sensors/build/modules/atmel/asf/cmake_install.cmake")
 
 endif()
 
